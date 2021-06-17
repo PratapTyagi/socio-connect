@@ -1,0 +1,18 @@
+.card > button {
+  background-color: var(--theame-color) !important;
+}
+
+.input-filled {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+input:focus {
+  border-bottom: 1px solid var(--theame-color) !important;
+}
+
+.file-field > .btn {
+  background-color: var(--theame-color) !important;
+}

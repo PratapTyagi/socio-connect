@@ -1,0 +1,13 @@
+body {
+  --theame-color: rgb(77, 137, 247);
+  color: whitesmoke;
+}
+
+.nav-wrapper {
+  padding: 0 20px;
+}
+
+a,
+li {
+  color: black !important;
+}

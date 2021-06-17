@@ -1,0 +1,78 @@
+.register_page {
+  margin-top: 2%;
+}
+
+.register {
+  border-radius: 20px;
+  background-color: rgb(44, 43, 44);
+  margin: auto;
+  width: 35%;
+  text-align: left;
+}
+
+.register > h3 {
+  padding: 20px 0 0 40px;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 0 10px;
+}
+
+.register__form > input {
+  max-width: 85%;
+  margin-left: 20px !important;
+  padding: 10px;
+  font-weight: 2px;
+  outline: none;
+  border: none;
+  color: grey !important;
+  background-color: black;
+}
+
+.register__form > .file-field {
+  max-width: 85%;
+  margin-left: 20px !important;
+  color: grey !important;
+}
+
+.register__form > button {
+  width: 85%;
+  margin: 20px 0 20px 20px;
+  padding: 10px;
+  text-align: center;
+  color: whitesmoke;
+  background-color: var(--theame-color);
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.login__user {
+  padding: 20px;
+  padding-top: 0;
+  margin-left: 15px;
+  font-size: 14px;
+  color: gray;
+}
+
+.login__user__login {
+  padding: 10px;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.login__user__login:hover {
+  color: var(--theame-color);
+}
+
+@media screen and (max-width: 800px) {
+  .register {
+    width: fit-content;
+  }
+  .register__form {
+    padding: 10px 10px 0 10px;
+  }
+}

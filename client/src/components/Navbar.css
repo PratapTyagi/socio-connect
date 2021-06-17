@@ -1,0 +1,60 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  margin-bottom: 20px;
+  background-color: rgb(44, 43, 44);
+}
+
+.logo > .link > h4 {
+  color: var(--theame-color);
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.right > .link > h6 {
+  cursor: pointer;
+  padding: 30px 10px;
+  margin: 0;
+  font-size: 15px;
+  color: whitesmoke;
+}
+
+.right > .link > h6:hover {
+  background-color: var(--theame-color);
+  color: rgb(44, 43, 44);
+  transition: background-color 0.9s ease-out;
+}
+
+.modal-content {
+  color: rgb(44, 43, 44);
+  font-weight: 700;
+}
+
+.modal-content > input {
+  border-bottom: 1px solid var(--theame-color) !important;
+}
+
+.modal-footer > button {
+  background-color: var(--theame-color);
+  color: whitesmoke;
+  margin-right: 18px !important;
+}
+
+@media screen and (max-width: 700px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .logo > .link > h4 {
+    padding-top: 15px;
+    padding-bottom: 5px;
+  }
+}

@@ -1,0 +1,110 @@
+.profile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  color: black;
+  max-width: 70%;
+}
+
+.profile__image {
+  padding-right: 50px;
+  margin-top: 4%;
+  flex: 0.3;
+}
+
+.profile__image > img {
+  height: 160px;
+  width: 160px;
+  border-radius: 80px;
+}
+
+.profile__information {
+  flex: 0.7;
+  align-items: flex-start;
+}
+
+.profile__information__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile__information__top > h4 {
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 400;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(44, 43, 44);
+}
+
+.profile__information__top > button {
+  outline: none;
+  cursor: pointer;
+  border: 1px solid var(--theame-color);
+  background-color: white;
+  color: var(--theame-color);
+  font-weight: 500;
+  height: 50px;
+  width: 100px;
+  border-radius: 40px;
+}
+
+.profile__information__top > button:hover {
+  background-color: var(--theame-color);
+  color: whitesmoke;
+  transition: background-color 0.3s ease-out;
+}
+
+.profile__information__mid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__information__description {
+  padding: 5px;
+  padding-left: 0;
+}
+
+.profile__page {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.file-path-wrapper > input {
+  border-bottom: 1px solid var(--theame-color) !important;
+}
+
+.profile__page > hr {
+  margin: 50px auto 20px auto;
+  color: var(--theame-color);
+}
+
+.profile__page > .gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.profile__page > .gallery > img {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 700px) {
+  .profile__information__top {
+    display: flex;
+    flex-direction: column;
+  }
+  .profile__information__top > h4 {
+    font-size: 20px;
+  }
+  .profile__information__mid {
+    display: none;
+  }
+  .profile__information__description {
+    display: none;
+  }
+}
