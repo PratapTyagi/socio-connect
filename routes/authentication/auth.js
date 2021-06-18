@@ -6,6 +6,16 @@ import jwt from "jsonwebtoken";
 import keys from "../../config/keys.js";
 const secret = keys.JWT_SECRET;
 import requireLogin from "../../middlewares/requireLogin.js";
+import nodemailer from "nodemailer";
+import sgTransport from "nodemailer-sendgrid-transport";
+
+var client = nodemailer.createTransport(
+  sgTransport({
+    auth: {
+      api_key: keys.SEND_GRID,
+    },
+  })
+);
 
 router.get("/protected", requireLogin, (req, res) => {
   res.send("Hello User");
@@ -31,7 +41,16 @@ router.post("/signup", (req, res) => {
         });
         user
           .save()
-          .then((user) => res.json({ message: "Saved successfully" }))
+          .then((user) => {
+            res.json({ message: "Saved successfully" });
+            client.sendMail({
+              from: "noreplysocioconnect@gmail.com",
+              to: user.email,
+              subject: "Sign up success",
+              html: `<b>Hello ${user.name} ! Welcome to family :)</b>`,
+            });
+          })
+
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
