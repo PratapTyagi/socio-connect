@@ -8,6 +8,7 @@ const secret = keys.JWT_SECRET;
 import requireLogin from "../../middlewares/requireLogin.js";
 import nodemailer from "nodemailer";
 import sgTransport from "nodemailer-sendgrid-transport";
+import crypto from "crypto";
 
 var client = nodemailer.createTransport(
   sgTransport({
@@ -88,6 +89,34 @@ router.post("/signin", (req, res) => {
         } else return res.json({ error: "Invalid Email or password" });
       })
       .catch((err) => console.log(err));
+  });
+});
+
+router.post("/reset-password", (req, res) => {
+  crypto.randomBytes(32, (err, buffer) => {
+    if (err) {
+      console.log(err);
+    }
+    const token = buffer.toString("hex");
+    User.findOne({ email: req.body.email }).then((user) => {
+      if (!user) {
+        req.json({ message: "User Doesn't exist with this email" });
+      }
+      user.resetToken = token;
+      user.expireToken = Date.now() + 3600000;
+      user.save().then((result) => {
+        client.sendMail({
+          from: "noreplysocioconnect@gmail.com",
+          to: user.email,
+          subject: "Reset Password",
+          html: `
+          <h2> You requested for password reset </h2>
+          <h3> Click <a href="http://localhost:3000/reset-password/${token}">Link</a> to reset password </h3>
+          `,
+        });
+        res.json({ message: "Check your email" });
+      });
+    });
   });
 });
 
