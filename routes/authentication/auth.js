@@ -100,7 +100,7 @@ router.post("/reset-password", (req, res) => {
     const token = buffer.toString("hex");
     User.findOne({ email: req.body.email }).then((user) => {
       if (!user) {
-        req.json({ message: "User Doesn't exist with this email" });
+        return res.json({ error: "User Doesn't exist with this email" });
       }
       user.resetToken = token;
       user.expireToken = Date.now() + 3600000;
@@ -117,6 +117,34 @@ router.post("/reset-password", (req, res) => {
         res.json({ message: "Check your email" });
       });
     });
+  });
+});
+
+router.post("/new-password", (req, res) => {
+  const newPassword = req.body.password;
+  const sentToken = req.body.token;
+  User.findOne({
+    resetToken: sentToken,
+    expireToken: { $gt: Date.now() },
+  }).then((user) => {
+    if (!user) {
+      return res.json({ error: "Try again session expired" });
+    }
+
+    bcrypt
+      .hash(newPassword, 12)
+      .then((hashedpassword) => {
+        user.password = hashedpassword;
+        user.resetToken = undefined;
+        user.expireToken = undefined;
+        user.save().then((savedUserRecord) => {
+          if (!savedUserRecord) {
+            return res.json({ error: "Try again" });
+          }
+          res.json({ message: "Password updated successfully" });
+        });
+      })
+      .catch((err) => console.log(err));
   });
 });
 
