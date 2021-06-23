@@ -9,6 +9,7 @@ import {
   CreatePost,
   User,
   UserFollowing,
+  ForgotPassword,
 } from "./components";
 import { initialState, reducer } from "./reducers/userReducer";
 import "./App.css";
@@ -37,6 +38,7 @@ const Routing = () => {
       <Route path="/create" exact component={CreatePost} />
       <Route path="/profile/:userid" exact component={User} />
       <Route path="/myfollowingsposts" exact component={UserFollowing} />
+      <Route path="/reset-password" exact component={ForgotPassword} />
     </>
   );
 };

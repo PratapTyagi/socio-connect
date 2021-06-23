@@ -1,17 +1,13 @@
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import M from "materialize-css";
-import { UserContext } from "../../../App";
 
-import "./Login.css";
-const Login = () => {
-  const { state, dispatch } = useContext(UserContext);
+const ForgotPassword = () => {
   const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
   const history = useHistory();
 
-  const login = async (e) => {
+  const reset = async (e) => {
     e.preventDefault();
 
     if (
@@ -24,9 +20,8 @@ const Login = () => {
     }
 
     await axios
-      .post("/signin", {
+      .post("/reset-password", {
         email,
-        password,
       })
       .then(({ data }) => {
         if (data.error) {
@@ -34,10 +29,7 @@ const Login = () => {
           return;
         } else {
           M.toast({ html: data.message, classes: "green darken-1" });
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("user", JSON.stringify(data.user));
-          dispatch({ type: "USER", payload: data.user });
-          history.push("/");
+          history.push("/login");
         }
       })
       .catch((error) => console.log(error));
@@ -46,7 +38,7 @@ const Login = () => {
   return (
     <div className="login_page">
       <div className="login">
-        <h4>Login</h4>
+        <h4>Reset Password</h4>
         <form className="login__form">
           <p>Email</p>
           <input
@@ -57,29 +49,14 @@ const Login = () => {
             required
           />
 
-          <p>Password</p>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setpassword(e.target.value)}
-            required
-          />
-          <button type="submit" onClick={login}>
-            Login
+          <button type="submit" onClick={reset}>
+            Reset Password
           </button>
         </form>
         <p className="register__user">
-          <Link
-            to="/signup"
-            style={{ textDecoration: "none", marginBottom: "8px" }}
-          >
+          <Link to="/signup" style={{ textDecoration: "none" }}>
             <span style={{ color: "grey" }}>Don't have an account</span>
             <strong className="register__user__signUp"> Sign Up</strong>
-          </Link>
-          <Link to="/reset-password" style={{ textDecoration: "none" }}>
-            <span style={{ color: "grey" }}>Don't remember password</span>
-            <strong className="register__user__signUp"> Forgot Pass.</strong>
           </Link>
         </p>
       </div>
@@ -87,4 +64,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

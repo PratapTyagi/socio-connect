@@ -6,3 +6,4 @@ export { default as SignUp } from "./screens/signup/Signup";
 export { default as CreatePost } from "./screens/create/CreatePost";
 export { default as User } from "./screens/user/User";
 export { default as UserFollowing } from "./screens/userFollowing/UserFollowing";
+export { default as ForgotPassword } from "./screens/forgotpassword/ForgotPassword";

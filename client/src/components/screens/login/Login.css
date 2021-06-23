@@ -10,8 +10,8 @@
   text-align: left;
 }
 
-.login > h3 {
-  padding: 20px 0 0 40px;
+.login > h4 {
+  padding: 20px 0 0 28px;
 }
 
 .login__form {
@@ -56,12 +56,13 @@
   margin-left: 15px;
   font-size: 14px;
   color: gray;
+  display: flex;
+  flex-direction: column;
 }
 
 .register__user__signUp {
   color: whitesmoke;
   padding: 10px;
-  text-decoration: none;
 }
 
 .register__user__signUp:hover {
