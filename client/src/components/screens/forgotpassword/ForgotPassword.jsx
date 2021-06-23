@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import M from "materialize-css";
 
 const ForgotPassword = () => {
   const [email, setemail] = useState("");
-  const history = useHistory();
 
   const reset = async (e) => {
     e.preventDefault();
@@ -29,7 +28,6 @@ const ForgotPassword = () => {
           return;
         } else {
           M.toast({ html: data.message, classes: "green darken-1" });
-          history.push("/login");
         }
       })
       .catch((error) => console.log(error));
