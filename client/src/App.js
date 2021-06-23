@@ -10,6 +10,7 @@ import {
   User,
   UserFollowing,
   ForgotPassword,
+  NewPassword,
 } from "./components";
 import { initialState, reducer } from "./reducers/userReducer";
 import "./App.css";
@@ -25,7 +26,8 @@ const Routing = () => {
     if (user) {
       dispatch({ type: "USER", payload: user });
     } else {
-      history.push("/login");
+      if (!history.location.pathname.startsWith("/reset-password"))
+        history.push("/login");
     }
   }, []);
 
@@ -39,6 +41,7 @@ const Routing = () => {
       <Route path="/profile/:userid" exact component={User} />
       <Route path="/myfollowingsposts" exact component={UserFollowing} />
       <Route path="/reset-password" exact component={ForgotPassword} />
+      <Route path="/reset-password/:token" exact component={NewPassword} />
     </>
   );
 };
