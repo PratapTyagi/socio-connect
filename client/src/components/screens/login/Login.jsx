@@ -25,7 +25,7 @@ const Login = () => {
 
     await axios
       .post("/signin", {
-        email,
+        email: email.toLowerCase(),
         password,
       })
       .then(({ data }) => {

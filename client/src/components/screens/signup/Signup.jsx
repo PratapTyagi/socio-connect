@@ -55,7 +55,7 @@ const Signup = () => {
     let data = await axios
       .post("/signup", {
         name,
-        email,
+        email: email.toLowerCase(),
         password,
         pic: url === "" ? undefined : url,
       })
