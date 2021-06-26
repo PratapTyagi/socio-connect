@@ -191,6 +191,7 @@ const Home = () => {
                   onSubmit={(e) => {
                     e.preventDefault();
                     makeComment(e.target[0].value, item._id);
+                    e.target[0].value = "";
                   }}
                 >
                   <input type="text" placeholder="Add a comment" />

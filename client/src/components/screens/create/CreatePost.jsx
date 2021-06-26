@@ -34,6 +34,9 @@ const CreatePost = () => {
               html: "Created Post Successfully",
               classes: "green darken-1",
             });
+            setBody("");
+            setImage("");
+            setTitle("");
           }
         })
         .catch((error) => console.log(error));
