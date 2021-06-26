@@ -57,7 +57,7 @@ const Signup = () => {
         name,
         email,
         password,
-        pic: url,
+        pic: url === "" ? undefined : url,
       })
       .then(({ data }) => {
         if (data.error) {
