@@ -48,7 +48,6 @@ const Login = () => {
       <div className="login">
         <h4>Login</h4>
         <form className="login__form">
-          <p>Email</p>
           <input
             type="text"
             placeholder="Email"
@@ -57,7 +56,6 @@ const Login = () => {
             required
           />
 
-          <p>Password</p>
           <input
             type="password"
             placeholder="Password"

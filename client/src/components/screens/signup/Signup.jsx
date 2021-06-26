@@ -42,6 +42,16 @@ const Signup = () => {
       return;
     }
 
+    if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+        password
+      )
+    )
+      return M.toast({
+        html: "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character",
+        classes: "red darken-3",
+      });
+
     let data = await axios
       .post("/signup", {
         name,
@@ -72,7 +82,7 @@ const Signup = () => {
   return (
     <div className="register_page">
       <div className="register">
-        <h3>Register</h3>
+        <h4>Register</h4>
         <form className="register__form">
           <input
             type="text"

@@ -20,13 +20,6 @@
   padding: 10px 0 0 10px;
 }
 
-.login__form > p {
-  margin: 0;
-  padding: 10px 10px 5px 20px;
-  font-size: 13px;
-  color: gray;
-}
-
 .login__form > input {
   max-width: 80%;
   margin-left: 20px !important;
