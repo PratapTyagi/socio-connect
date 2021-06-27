@@ -111,7 +111,7 @@ router.post("/reset-password", (req, res) => {
           subject: "Reset Password",
           html: `
           <h2> You requested for password reset </h2>
-          <h3> Click <a href="https://socio-connect-1.herokuapp.com/reset-password/${token}">Link</a> to reset password </h3>
+          <h3> Click <a href="https://socio-connect-1.herokuapp.com/#/reset-password/${token}">Link</a> to reset password </h3>
           `,
         });
         res.json({ message: "Check your email" });

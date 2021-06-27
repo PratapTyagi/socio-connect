@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
+import { HashRouter as Router, Route, useHistory } from "react-router-dom";
 import {
   Navbar,
   Home,

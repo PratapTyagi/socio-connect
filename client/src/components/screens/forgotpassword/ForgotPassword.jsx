@@ -38,7 +38,6 @@ const ForgotPassword = () => {
       <div className="login">
         <h4>Reset Password</h4>
         <form className="login__form">
-          <p>Email</p>
           <input
             type="text"
             placeholder="Email"
