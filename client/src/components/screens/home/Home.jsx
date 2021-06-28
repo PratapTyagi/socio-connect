@@ -8,6 +8,7 @@ import "./Home.css";
 const Home = () => {
   const [info, setInfo] = useState([]);
   const { state, dispatch } = useContext(UserContext);
+  const [follow, setFollow] = useState([]);
 
   useEffect(() => {
     axios
@@ -21,6 +22,19 @@ const Home = () => {
       })
       .catch((err) => console.log(err));
   }, [info]);
+
+  useEffect(() => {
+    axios
+      .get("/all-user", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(({ data }) => {
+        setFollow(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   const likePost = (id) => {
     axios
@@ -206,16 +220,15 @@ const Home = () => {
         <div className="right__top">
           <h5>Follow</h5>
           <div className="right__top__persons">
-            <div className="person">
-              <div>
-                <img
-                  src="http://res.cloudinary.com/dark-01/image/upload/v1624433470/dnp9cdzuabhy83wumusu.jpg"
-                  alt="IMG"
-                />
-                <p>Pratap</p>
+            {follow.map((item) => (
+              <div className="person">
+                <div>
+                  <img src={item.pic} alt="IMG" />
+                  <p>{item.name}</p>
+                </div>
+                <button>Follow</button>
               </div>
-              <button>Follow</button>
-            </div>
+            ))}
           </div>
         </div>
         <div className="right__bottom">
@@ -223,10 +236,7 @@ const Home = () => {
           <div className="right__bottom__persons">
             <div className="person">
               <div>
-                <img
-                  src="http://res.cloudinary.com/dark-01/image/upload/v1624433470/dnp9cdzuabhy83wumusu.jpg"
-                  alt="IMG"
-                />
+                <img src="" alt="IMG" />
                 <p>Pratap</p>
               </div>
               <button>UnFollow</button>
