@@ -99,4 +99,22 @@ router.post("/search-user", requireLogin, (req, res) => {
     .catch((err) => res.json(err));
 });
 
+router.get("/all-user", requireLogin, (req, res) => {
+  User.find()
+    .select("_id name pic followers following")
+    .then((user) => {
+      User.findById({ _id: req.user._id })
+        .then((currentUser) => {
+          currentUser.followers.push(req.user._id);
+          console.log(currentUser.followers);
+          let newUsers = user.filter(
+            (item) => !currentUser.followers.includes(item._id)
+          );
+          res.send(newUsers);
+        })
+        .catch((error) => console.log(error));
+    })
+    .catch((error) => console.log(error));
+});
+
 export default router;
