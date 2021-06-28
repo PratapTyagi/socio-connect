@@ -21,8 +21,10 @@ const Routing = () => {
   const history = useHistory();
   const { state, dispatch } = useContext(UserContext);
 
+  let user;
+
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       dispatch({ type: "USER", payload: user });
     } else {
@@ -33,15 +35,26 @@ const Routing = () => {
 
   return (
     <>
-      <Route path="/" exact component={Home} />
-      <Route path="/login" exact component={Login} />
-      <Route path="/profile" exact component={Profile} />
-      <Route path="/signup" exact component={SignUp} />
-      <Route path="/create" exact component={CreatePost} />
-      <Route path="/profile/:userid" exact component={User} />
-      <Route path="/myfollowingsposts" exact component={UserFollowing} />
-      <Route path="/reset-password" exact component={ForgotPassword} />
-      <Route path="/reset-password/:token" exact component={NewPassword} />
+      {!user ? (
+        <>
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={SignUp} />
+          <Route path="/reset-password" exact component={ForgotPassword} />
+          <Route path="/reset-password/:token" exact component={NewPassword} />
+        </>
+      ) : (
+        <>
+          <Route path="/" exact component={Home} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={SignUp} />
+          <Route path="/profile" exact component={Profile} />
+          <Route path="/reset-password" exact component={ForgotPassword} />
+          <Route path="/reset-password/:token" exact component={NewPassword} />
+          <Route path="/myfollowingsposts" exact component={UserFollowing} />
+          <Route path="/profile/:userid" exact component={User} />
+          <Route path="/create" exact component={CreatePost} />
+        </>
+      )}
     </>
   );
 };
