@@ -1,12 +1,15 @@
 .home {
-  width: 50%;
-  margin: 20px auto 0 auto;
+  display: flex;
+  color: black;
+  height: 85vh;
+  width: 100% !important;
 }
 
 .home-card {
   color: rgb(44, 43, 44);
   border-radius: 10px;
-  margin-bottom: 30px;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .card_header {
@@ -57,4 +60,137 @@
   transition: color 0.4s ease-out;
   transition: background-color 0.4s ease-out;
   border-radius: 30px;
+}
+
+.home > .left {
+  flex: 0.6;
+  overflow-y: scroll;
+}
+
+.left::-webkit-scrollbar {
+  display: none;
+}
+
+.home > .right {
+  flex: 0.4;
+  display: flex;
+  flex-direction: column;
+}
+
+.home > .right > .right__top {
+  height: 45%;
+  width: 80% !important;
+  box-shadow: 1px 1px 5px rgba(27, 27, 27, 0.1),
+    -1px -1px 5px rgb(27, 27, 27, 0.1);
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.home > .right > .right__bottom {
+  height: 45%;
+}
+
+.right > .right__top {
+  width: 100%;
+}
+
+.right__top > h5 {
+  color: rgb(27, 27, 27);
+  margin-top: 0;
+  padding: 15px;
+  padding-left: 20px;
+  font-weight: 400;
+  border-bottom: 1px solid lightgrey;
+}
+
+.right > .right__top > .right__top__persons {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 70%;
+}
+.right > .right__top > .right__top__persons::-webkit-scrollbar {
+  display: none;
+}
+
+.person {
+  height: 50px;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.person > div {
+  display: flex;
+  align-items: center;
+}
+
+.person > div > img {
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+}
+
+.person > div > p {
+  font-size: 20px;
+  color: gray;
+  margin-left: 10px;
+}
+
+.person > button {
+  outline: none;
+  cursor: pointer;
+  background-color: inherit;
+  color: var(--theame-color);
+  padding: 8px;
+  font-weight: 700;
+  border: 2px solid var(--theame-color);
+  border-radius: 30px;
+}
+
+.person > button:hover {
+  background-color: var(--theame-color);
+  color: whitesmoke;
+  transition: background-color 0.3s ease-out;
+  transition: color 0.3s ease-in;
+}
+
+.right > .right__bottom {
+  height: 45%;
+  width: 80% !important;
+  box-shadow: 1px 1px 5px rgba(27, 27, 27, 0.1),
+    -1px -1px 5px rgb(27, 27, 27, 0.1);
+  margin: 0 auto;
+}
+
+.right__bottom > h5 {
+  color: rgb(27, 27, 27);
+  margin-top: 0;
+  padding: 15px;
+  padding-left: 20px;
+  font-weight: 400;
+  border-bottom: 1px solid lightgrey;
+}
+
+.right > .right__bottom > .right__bottom__persons {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 70%;
+}
+.right > .right__bottom > .right__bottom__persons::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .home > .right {
+    display: none;
+  }
+  .home > .left {
+    flex: 1;
+  }
 }

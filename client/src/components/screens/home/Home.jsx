@@ -123,83 +123,117 @@ const Home = () => {
 
   return (
     <div className="home">
-      {info &&
-        info.map((item) => {
-          return (
-            <div key={item._id} className="card home-card">
-              <div className="card_header">
-                <Link
-                  className="link"
-                  to={
-                    item.postedBy._id !== state._id
-                      ? `/profile/${item.postedBy._id}`
-                      : `/profile`
-                  }
-                >
-                  <h5>{item.postedBy.name}</h5>
-                </Link>
-                {item.postedBy._id === state._id && (
-                  <i
-                    className="material-icons delete"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      deletePost(item._id);
-                    }}
+      <div className="left">
+        {info &&
+          info.map((item) => {
+            return (
+              <div key={item._id} className="card home-card">
+                <div className="card_header">
+                  <Link
+                    className="link"
+                    to={
+                      item.postedBy._id !== state._id
+                        ? `/profile/${item.postedBy._id}`
+                        : `/profile`
+                    }
                   >
-                    delete
-                  </i>
-                )}
-              </div>
-              <div className="card-image">
-                {item.photo !== "No Photograph" ? (
-                  <img src={item.photo} alt={item.postedBy.name} />
-                ) : null}
-              </div>
-              <div className="card-content">
-                <div className="card-content-inner">
-                  <i className="material-icons" style={{ color: "red" }}>
-                    favorite
-                  </i>
-                  <span>{item.likes && item.likes.length}</span>
-
-                  {item.likes.includes(state._id) ? (
+                    <h5>{item.postedBy.name}</h5>
+                  </Link>
+                  {item.postedBy._id === state._id && (
                     <i
-                      className="material-icons thumb"
-                      onClick={() => unlikePost(item._id)}
+                      className="material-icons delete"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        deletePost(item._id);
+                      }}
                     >
-                      thumb_down
-                    </i>
-                  ) : (
-                    <i
-                      className="material-icons thumb"
-                      onClick={() => likePost(item._id)}
-                    >
-                      thumb_up
+                      delete
                     </i>
                   )}
                 </div>
-                <h6>{item.title}</h6>
-                <p>{item.body}</p>
-                {item.comments.map((record) => {
-                  return (
-                    <h6 key={record._id}>
-                      <strong>{record.postedBy.name}</strong> {record.text}
-                    </h6>
-                  );
-                })}
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    makeComment(e.target[0].value, item._id);
-                    e.target[0].value = "";
-                  }}
-                >
-                  <input type="text" placeholder="Add a comment" />
-                </form>
+                <div className="card-image">
+                  {item.photo !== "No Photograph" ? (
+                    <img src={item.photo} alt={item.postedBy.name} />
+                  ) : null}
+                </div>
+                <div className="card-content">
+                  <div className="card-content-inner">
+                    <i className="material-icons" style={{ color: "red" }}>
+                      favorite
+                    </i>
+                    <span>{item.likes && item.likes.length}</span>
+
+                    {item.likes.includes(state._id) ? (
+                      <i
+                        className="material-icons thumb"
+                        onClick={() => unlikePost(item._id)}
+                      >
+                        thumb_down
+                      </i>
+                    ) : (
+                      <i
+                        className="material-icons thumb"
+                        onClick={() => likePost(item._id)}
+                      >
+                        thumb_up
+                      </i>
+                    )}
+                  </div>
+                  <h6>{item.title}</h6>
+                  <p>{item.body}</p>
+                  {item.comments.map((record) => {
+                    return (
+                      <h6 key={record._id}>
+                        <strong>{record.postedBy.name}</strong> {record.text}
+                      </h6>
+                    );
+                  })}
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      makeComment(e.target[0].value, item._id);
+                      e.target[0].value = "";
+                    }}
+                  >
+                    <input type="text" placeholder="Add a comment" />
+                  </form>
+                </div>
               </div>
+            );
+          })}
+      </div>
+      <div className="right">
+        <div className="right__top">
+          <h5>Follow</h5>
+          <div className="right__top__persons">
+            <div className="person">
+              <div>
+                <img
+                  src="http://res.cloudinary.com/dark-01/image/upload/v1624433470/dnp9cdzuabhy83wumusu.jpg"
+                  alt="IMG"
+                />
+                <p>Pratap</p>
+              </div>
+              <button>Follow</button>
             </div>
-          );
-        })}
+          </div>
+        </div>
+        <div className="right__bottom">
+          <h5>Followings</h5>
+          <div className="right__bottom__persons">
+            <div className="person">
+              <div>
+                <img
+                  src="http://res.cloudinary.com/dark-01/image/upload/v1624433470/dnp9cdzuabhy83wumusu.jpg"
+                  alt="IMG"
+                />
+                <p>Pratap</p>
+              </div>
+              <button>UnFollow</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

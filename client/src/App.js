@@ -20,10 +20,9 @@ export const UserContext = createContext();
 const Routing = () => {
   const history = useHistory();
   const { state, dispatch } = useContext(UserContext);
-  let user;
 
   useEffect(() => {
-    user = JSON.parse(localStorage.getItem("user"));
+    let user = JSON.parse(localStorage.getItem("user"));
     if (state || user) {
       dispatch({ type: "USER", payload: user });
     } else {
