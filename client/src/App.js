@@ -20,12 +20,11 @@ export const UserContext = createContext();
 const Routing = () => {
   const history = useHistory();
   const { state, dispatch } = useContext(UserContext);
-
   let user;
 
   useEffect(() => {
     user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
+    if (state || user) {
       dispatch({ type: "USER", payload: user });
     } else {
       if (!history.location.pathname.startsWith("/reset-password"))
@@ -35,7 +34,7 @@ const Routing = () => {
 
   return (
     <>
-      {!user ? (
+      {!state ? (
         <>
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={SignUp} />
