@@ -284,10 +284,12 @@ const Home = () => {
           <div className="right__top__persons">
             {follow.map((user) => (
               <div className="person">
-                <div>
-                  <img src={user.pic} alt="DP" />
-                  <p>{user.name}</p>
-                </div>
+                <Link className="link" to={`profile/${user._id}`}>
+                  <div>
+                    <img src={user.pic} alt="DP" />
+                    <p>{user.name}</p>
+                  </div>
+                </Link>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -305,10 +307,12 @@ const Home = () => {
           <div className="right__bottom__persons">
             {followings.map((user) => (
               <div className="person">
-                <div>
-                  <img src={user.pic} alt="DP" />
-                  <p>{user.name}</p>
-                </div>
+                <Link className="link" to={`profile/${user._id}`}>
+                  <div>
+                    <img src={user.pic} alt="DP" />
+                    <p>{user.name}</p>
+                  </div>
+                </Link>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
