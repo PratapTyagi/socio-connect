@@ -35,7 +35,7 @@ const Home = () => {
         setFollow(data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [follow]);
 
   useEffect(() => {
     axios
@@ -48,7 +48,7 @@ const Home = () => {
         setFollowings(data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [followings]);
 
   const likePost = (id) => {
     axios
@@ -149,6 +149,31 @@ const Home = () => {
       .catch((err) => console.log(err));
   };
 
+  const followUser = async (id) => {
+    await axios
+      .put(
+        "/follow",
+        {
+          followId: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then(({ data }) => {
+        dispatch({
+          type: "UPDATE",
+          payload: { followers: data.followers, following: data.following },
+        });
+        localStorage.setItem("user", JSON.stringify(data));
+        console.log(data);
+        setFollow(data.followers);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="home">
       <div className="left">
@@ -240,7 +265,14 @@ const Home = () => {
                   <img src={item.pic} alt="DP" />
                   <p>{item.name}</p>
                 </div>
-                <button>Follow</button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    followUser(item._id);
+                  }}
+                >
+                  Follow
+                </button>
               </div>
             ))}
           </div>

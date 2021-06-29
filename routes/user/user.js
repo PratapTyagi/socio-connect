@@ -105,9 +105,9 @@ router.get("/all-user", requireLogin, (req, res) => {
     .then((user) => {
       User.findById({ _id: req.user._id })
         .then((currentUser) => {
-          currentUser.followers.push(req.user._id);
+          currentUser.following.push(req.user._id);
           let newUsers = user.filter(
-            (item) => !currentUser.followers.includes(item._id)
+            (item) => !currentUser.following.includes(item._id)
           );
           res.send(newUsers);
         })
