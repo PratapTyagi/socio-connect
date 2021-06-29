@@ -9,6 +9,7 @@ const Home = () => {
   const [info, setInfo] = useState([]);
   const { state, dispatch } = useContext(UserContext);
   const [follow, setFollow] = useState([]);
+  const [followings, setFollowings] = useState([]);
 
   useEffect(() => {
     axios
@@ -32,6 +33,19 @@ const Home = () => {
       })
       .then(({ data }) => {
         setFollow(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("/followings", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(({ data }) => {
+        setFollowings(data);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -223,7 +237,7 @@ const Home = () => {
             {follow.map((item) => (
               <div className="person">
                 <div>
-                  <img src={item.pic} alt="IMG" />
+                  <img src={item.pic} alt="DP" />
                   <p>{item.name}</p>
                 </div>
                 <button>Follow</button>
@@ -234,13 +248,15 @@ const Home = () => {
         <div className="right__bottom">
           <h5>Followings</h5>
           <div className="right__bottom__persons">
-            <div className="person">
-              <div>
-                <img src="" alt="IMG" />
-                <p>Pratap</p>
+            {followings.map((user) => (
+              <div className="person">
+                <div>
+                  <img src={user.pic} alt="DP" />
+                  <p>{user.name}</p>
+                </div>
+                <button>UnFollow</button>
               </div>
-              <button>UnFollow</button>
-            </div>
+            ))}
           </div>
         </div>
       </div>
