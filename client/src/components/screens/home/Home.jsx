@@ -168,8 +168,31 @@ const Home = () => {
           payload: { followers: data.followers, following: data.following },
         });
         localStorage.setItem("user", JSON.stringify(data));
-        console.log(data);
         setFollow(data.followers);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const unFollowUser = async (id) => {
+    await axios
+      .put(
+        "/unfollow",
+        {
+          unfollowId: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then(({ data }) => {
+        dispatch({
+          type: "UPDATE",
+          payload: { followers: data.followers, following: data.following },
+        });
+        localStorage.setItem("user", JSON.stringify(data));
+        setFollowings(data.following);
       })
       .catch((err) => console.log(err));
   };
@@ -259,16 +282,16 @@ const Home = () => {
         <div className="right__top">
           <h5>Follow</h5>
           <div className="right__top__persons">
-            {follow.map((item) => (
+            {follow.map((user) => (
               <div className="person">
                 <div>
-                  <img src={item.pic} alt="DP" />
-                  <p>{item.name}</p>
+                  <img src={user.pic} alt="DP" />
+                  <p>{user.name}</p>
                 </div>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    followUser(item._id);
+                    followUser(user._id);
                   }}
                 >
                   Follow
@@ -286,7 +309,14 @@ const Home = () => {
                   <img src={user.pic} alt="DP" />
                   <p>{user.name}</p>
                 </div>
-                <button>UnFollow</button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    unFollowUser(user._id);
+                  }}
+                >
+                  UnFollow
+                </button>
               </div>
             ))}
           </div>
