@@ -122,7 +122,7 @@ const UserFollowing = () => {
   };
 
   return (
-    <div className="home">
+    <div className="home" style={{ display: "flex", flexDirection: "column" }}>
       {info &&
         info.map((item) => {
           return (

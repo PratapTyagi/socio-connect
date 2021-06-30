@@ -94,6 +94,15 @@
 }
 
 @media screen and (max-width: 700px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile__image {
+    padding: 0 !important;
+  }
+
   .profile__information__top {
     display: flex;
     flex-direction: column;
@@ -106,5 +115,9 @@
   }
   .profile__information__description {
     display: none;
+  }
+  .file-field {
+    display: flex;
+    flex-direction: column;
   }
 }
