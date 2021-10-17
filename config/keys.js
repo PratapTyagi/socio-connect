@@ -1,7 +1,9 @@
 const keys = {
-  MONGOURL: process.env.MONGOURL,
-  JWT_SECRET: process.env.JWT_SECRET,
-  SEND_GRID: process.env.SEND_GRID,
+  MONGOURL:
+    "mongodb+srv://PratapTyagi:zBimFPtYkvot89FC@cluster0.4kxqy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  JWT_SECRET: "zBimFPtYkvot89FCJwt",
+  SEND_GRID:
+    "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",
 };
 
 export default keys;

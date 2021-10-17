@@ -16,6 +16,7 @@ router.get("/allpost", requireLogin, (req, res) => {
     });
 });
 
+// For following users posts
 router.get("/getsubposts", requireLogin, (req, res) => {
   Post.find({ postedBy: { $in: req.user.following } })
     .populate("postedBy", "_id name")
