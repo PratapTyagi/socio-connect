@@ -37,7 +37,7 @@ const UserFollowing = () => {
       )
       .then((res) => {
         const newData = info.map((data) => {
-          if (data._id == res._id) {
+          if (data._id === res._id) {
             return res;
           } else return data;
         });
@@ -61,7 +61,7 @@ const UserFollowing = () => {
       )
       .then((res) => {
         const newData = info.map((data) => {
-          if (data._id == res._id) {
+          if (data._id === res._id) {
             return res;
           } else return data;
         });
@@ -86,7 +86,7 @@ const UserFollowing = () => {
       )
       .then((res) => {
         const newData = info.map((item) => {
-          if (item._id == res.data) {
+          if (item._id === res.data) {
             return res;
           } else {
             return item;

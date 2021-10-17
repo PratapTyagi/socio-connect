@@ -65,7 +65,7 @@ const Home = () => {
       )
       .then((res) => {
         const newData = info.map((data) => {
-          if (data._id == res._id) {
+          if (data._id === res._id) {
             return res;
           } else return data;
         });
