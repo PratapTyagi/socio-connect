@@ -1,6 +1,9 @@
 import express from "express";
+
 import Post from "../../models/post/post.js";
 import User from "../../models/user/user.js";
+import Room from "../../models/room/room.js";
+
 import requireLogin from "../../middlewares/requireLogin.js";
 
 const router = express.Router();
@@ -116,6 +119,8 @@ router.get("/all-user", requireLogin, (req, res) => {
     .catch((error) => console.log(error));
 });
 
+// All users to whom user is following
+
 router.get("/followings", requireLogin, (req, res) => {
   User.findById({ _id: req.user._id })
     .then((currentUser) => {
@@ -130,6 +135,56 @@ router.get("/followings", requireLogin, (req, res) => {
         .catch((error) => console.log(error));
     })
     .catch((error) => console.log(error));
+});
+
+// List of users to whom user is following and want to add to room
+
+router.post("/all-following-users", requireLogin, (req, res) => {
+  Room.findById(req.body.roomId)
+    .then((room) => {
+      User.find({ _id: { $ne: req.user._id } })
+        .select("-password -rooms -__v")
+        .then((users) => {
+          const result = users.filter(
+            (item) => !room.members.includes(item._id) && req.user.following.includes(item._id)
+          );
+          res.json(result);
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
+})
+
+// Add user to messenger room
+
+router.put("/add-user", requireLogin, (req, res) => {
+  const { roomId, userId } = req.body;
+
+  Room.findByIdAndUpdate(
+    roomId,
+    {
+      $push: { members: userId },
+    },
+    { new: true }
+  ).exec((err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      User.findByIdAndUpdate(
+        userId,
+        {
+          $push: { rooms: roomId },
+        },
+        { new: true }
+      ).exec((err, result) => {
+        if (err) {
+          return res.json({ error: err });
+        } else {
+          return res.json(result);
+        }
+      });
+    }
+  });
 });
 
 export default router;

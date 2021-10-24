@@ -18,21 +18,21 @@ const postSchema = new mongoose.Schema(
     likes: [
       {
         type: ObjectId,
-        ref: "User",
+        ref: "users",
       },
     ],
     comments: [
       {
         text: String,
-        postedBy: { type: ObjectId, ref: "User" },
+        postedBy: { type: ObjectId, ref: "users" },
       },
     ],
     postedBy: {
       type: ObjectId,
-      ref: "User",
+      ref: "users",
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Post", postSchema);
+export default mongoose.model("posts", postSchema);

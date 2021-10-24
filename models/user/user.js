@@ -19,13 +19,13 @@ const userSchema = mongoose.Schema({
   followers: [
     {
       type: ObjectId,
-      ref: "User",
+      ref: "users",
     },
   ],
   following: [
     {
       type: ObjectId,
-      ref: "User",
+      ref: "users",
     },
   ],
   pic: {
@@ -33,6 +33,12 @@ const userSchema = mongoose.Schema({
     default:
       "https://res.cloudinary.com/dark-01/image/upload/v1623783636/pixlr-bg-result_sa4w7l.png",
   },
+  rooms: [
+    {
+      type: ObjectId,
+      ref: "rooms"
+    }
+  ]
 });
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model("users", userSchema);

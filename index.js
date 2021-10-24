@@ -4,6 +4,9 @@ import keys from "./config/keys.js";
 import authentication from "./routes/authentication/auth.js";
 import post from "./routes/post/post.js";
 import user from "./routes/user/user.js";
+import messages from "./routes/message/message.js";
+import rooms from './routes/rooms/rooms.js'
+
 import cors from "cors";
 const app = express();
 import path from "path";
@@ -26,6 +29,8 @@ app.use(express.json());
 app.use(authentication);
 app.use(post);
 app.use(user);
+app.use(messages);
+app.use(rooms);
 
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static("client/build"));
