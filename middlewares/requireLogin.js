@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
-import keys from "../config/keys.js";
 import User from "../models/user/user.js";
-const secret = keys.JWT_SECRET;
+const secret = process.env.JWT_SECRET;
 
 export default (req, res, next) => {
   const { authorization } = req.headers;

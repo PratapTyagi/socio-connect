@@ -3,17 +3,16 @@ const router = express.Router();
 import User from "../../models/user/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import keys from "../../config/keys.js";
-const secret = keys.JWT_SECRET;
 import requireLogin from "../../middlewares/requireLogin.js";
 import nodemailer from "nodemailer";
 import sgTransport from "nodemailer-sendgrid-transport";
 import crypto from "crypto";
 
+const secret = process.env.JWT_SECRET;
 var client = nodemailer.createTransport(
   sgTransport({
     auth: {
-      api_key: keys.SEND_GRID,
+      api_key: process.env.SEND_GRID,
     },
   })
 );
