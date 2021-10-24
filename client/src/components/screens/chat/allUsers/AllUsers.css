@@ -1,0 +1,74 @@
+.chat > h2 {
+  font-weight: 600;
+  color: rgb(46, 46, 46);
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 25px;
+}
+
+.chat > .chat__mid {
+  display: flex;
+  flex-direction: column !important;
+  width: 80%;
+  margin: 0 auto;
+  overflow-y: scroll;
+  height: 80%;
+  cursor: grab;
+}
+
+.chat > .chat__mid::-webkit-scrollbar {
+  display: none;
+}
+
+.chat__mid > hr {
+  color: lightgrey !important;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.chat__mid > .chat__mid__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.chat__mid > .chat__mid__inner > .addUsers__item__left {
+  display: flex;
+  align-items: center;
+}
+
+.addUsers__item__left > img {
+  object-fit: contain;
+  height: 50px;
+  width: 50px;
+}
+
+.addUsers__item__left > .center {
+  padding-left: 10px;
+}
+
+.center > h4 {
+  margin: 0;
+}
+
+.center > p {
+  margin: 0;
+}
+
+.chat__mid__inner > button {
+  outline: none;
+  border: none;
+  border: 2px solid rgb(133, 181, 195);
+  border-radius: 30%;
+  background-color: initial;
+  color: rgb(133, 181, 195);
+  padding: 10px;
+  cursor: pointer;
+}
+
+.chat__mid__inner > button:hover {
+  background-color: rgb(133, 181, 195);
+  color: white;
+}

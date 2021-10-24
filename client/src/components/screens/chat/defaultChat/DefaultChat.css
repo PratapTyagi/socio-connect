@@ -1,0 +1,25 @@
+.chat__inner {
+  text-align: center;
+  margin: auto;
+}
+
+.chat__inner > img {
+  height: 100px;
+  width: 100px;
+}
+
+.chat__inner > h1 {
+  font-weight: 500;
+  color: rgb(26, 25, 25);
+}
+
+.chat__inner > p {
+  font-weight: 500;
+  color: gray;
+  margin-top: 12px;
+}
+
+.chat__inner > hr {
+  margin: 20px 0;
+  color: gray;
+}

@@ -8,3 +8,7 @@ export { default as User } from "./screens/user/User";
 export { default as UserFollowing } from "./screens/userFollowing/UserFollowing";
 export { default as ForgotPassword } from "./screens/forgotpassword/ForgotPassword";
 export { default as NewPassword } from "./screens/newPassword/NewPassword";
+export { default as Sidebar } from "./screens/sidebar/Sidebar";
+export { default as DefaultChat } from "./screens/chat/defaultChat/DefaultChat";
+export { default as Chat } from "./screens/chat/Chat";
+export { default as AllUsers } from "./screens/chat/allUsers/AllUsers";;

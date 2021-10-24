@@ -1,0 +1,37 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex: 0.35;
+  border-right: 1px solid lightgray;
+}
+
+.sidebar_header {
+  padding: 20px;
+}
+
+.sidebar_header > button {
+  padding: 8px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  border: 2px solid rgb(133, 181, 195);
+  border-radius: 50%;
+  color: rgb(107, 147, 160);
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.sidebar_header > button:hover {
+  background-color: rgb(133, 181, 195);
+  color: whitesmoke;
+  transition: background-color 0.3s ease-out;
+}
+
+.sidebar_chats {
+  background-color: white;
+  overflow-y: scroll;
+}
+
+.sidebar_chats::-webkit-scrollbar {
+  display: none;
+}

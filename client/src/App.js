@@ -11,6 +11,10 @@ import {
   UserFollowing,
   ForgotPassword,
   NewPassword,
+  Sidebar,
+  DefaultChat,
+  Chat,
+  AllUsers
 } from "./components";
 import { initialState, reducer } from "./reducers/userReducer";
 import "./App.css";
@@ -51,6 +55,17 @@ const Routing = () => {
           <Route path="/myfollowingsposts" exact component={UserFollowing} />
           <Route path="/profile/:userid" exact component={User} />
           <Route path="/create" exact component={CreatePost} />
+          <Route exact path="/chat">
+            <Sidebar />
+            <DefaultChat />
+          </Route>
+          <Route exact path="/chat/room/:roomId">
+            <Sidebar />
+            <Chat />
+          </Route>
+          <Route exact path="/chat/room/:roomId/allusers">
+            <AllUsers />
+          </Route>
         </>
       )}
     </>
