@@ -8,7 +8,6 @@ import nodemailer from "nodemailer";
 import sgTransport from "nodemailer-sendgrid-transport";
 import crypto from "crypto";
 
-const secret = process.env.JWT_SECRET;
 var client = nodemailer.createTransport(
   sgTransport({
     auth: {
@@ -70,8 +69,7 @@ router.post("/signin", (req, res) => {
       .compare(password, savedUser.password)
       .then((doMatch) => {
         if (doMatch) {
-          // res.status(200).send({ message: "Successfully Signed In" });
-          const token = jwt.sign({ _id: savedUser._id }, secret);
+          const token = jwt.sign({ _id: savedUser._id }, process.env.JWT_SECRET);
           const { _id, name, followers, following, pic } = savedUser;
           res.json({
             user: {

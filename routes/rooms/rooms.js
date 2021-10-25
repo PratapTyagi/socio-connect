@@ -9,10 +9,8 @@ const router = express.Router();
 
 router.post("/room/new", requireLogin, (req, res) => {
     const { name, pic } = req.body;
-
     const data = new Rooms({
         name,
-        pic,
         members: req.user._id,
     });
 

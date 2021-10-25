@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user/user.js";
-const secret = process.env.JWT_SECRET;
 
 export default (req, res, next) => {
   const { authorization } = req.headers;
@@ -9,7 +8,7 @@ export default (req, res, next) => {
     return res.status(401).json({ error: "You must be logged in" });
   }
   const token = authorization.replace("Bearer ", "");
-  jwt.verify(token, secret, (error, payload) => {
+  jwt.verify(token, process.env.JWT_SECRET, (error, payload) => {
     if (error) {
       return res.status(401).json({ error: "You must be logged in" });
     }
