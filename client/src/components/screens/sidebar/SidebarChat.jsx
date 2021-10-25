@@ -4,7 +4,7 @@ import "./SidebarChat.css";
 import { Link } from "react-router-dom";
 
 const SidebarChat = ({ addNewChat, room }) => {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   const createChat = async () => {
     const fetchedName = prompt("Enter the name of room");
@@ -28,7 +28,7 @@ const SidebarChat = ({ addNewChat, room }) => {
   return addNewChat ? (
     <div className="sidebarChat" onClick={createChat}>
       <div className="sidebarChat_right">
-        <h2>Add New Chat</h2>
+        <h2 onClick={createChat}>Add New Chat</h2>
       </div>
     </div>
   ) : (

@@ -27,6 +27,9 @@ const Navbar = () => {
               search
             </h6>
           </div>
+          <Link className="link" to="/chat" style={{ textDecoration: "none" }}>
+            <h6 className="material-icons">chat_bubble_outline</h6>
+          </Link>
           <Link
             className="link"
             to="/myfollowingsposts"

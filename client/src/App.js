@@ -56,15 +56,21 @@ const Routing = () => {
           <Route path="/profile/:userid" exact component={User} />
           <Route path="/create" exact component={CreatePost} />
           <Route exact path="/chat">
-            <Sidebar />
-            <DefaultChat />
+            <div className="margin app__body">
+              <Sidebar />
+              <DefaultChat />
+            </div>
           </Route>
           <Route exact path="/chat/room/:roomId">
-            <Sidebar />
-            <Chat />
+            <div className="margin app__body">
+              <Sidebar />
+              <Chat />
+            </div>
           </Route>
           <Route exact path="/chat/room/:roomId/allusers">
-            <AllUsers />
+            <div className="margin app__body">
+              <AllUsers />
+            </div>
           </Route>
         </>
       )}
