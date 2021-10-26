@@ -12,7 +12,7 @@ body {
   width: 90vw;
   height: 80vh;
   box-shadow: -1px 4px 20px -4px rgba(0, 0, 0, 0.5);
-  background-color: #ededed;
+  background-color: white !important;
 }
 
 .nav-wrapper {

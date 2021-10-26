@@ -4,24 +4,26 @@ import "./SidebarChat.css";
 import { Link } from "react-router-dom";
 
 const SidebarChat = ({ addNewChat, room }) => {
-  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const currentUser = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   const createChat = async () => {
     const fetchedName = prompt("Enter the name of room");
     if (fetchedName) {
-      await axios
+      const res = await axios
         .post(
-          "/api/rooms/new",
+          "/room/new",
           {
             name: fetchedName,
           },
           {
             headers: {
-              Authorization: `Bearer ${currentUser.token}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         )
         .catch((err) => console.log(err));
+      console.log(res);
     }
   };
 
@@ -32,7 +34,7 @@ const SidebarChat = ({ addNewChat, room }) => {
       </div>
     </div>
   ) : (
-    <Link to={`/room/${room._id}`} style={{ textDecoration: "none" }}>
+    <Link to={`/chat/room/${room._id}`} style={{ textDecoration: "none" }}>
       <div className="sidebarChat">
         <img src={room.pic} alt="img" />
         <div className="sidebarChat_right">

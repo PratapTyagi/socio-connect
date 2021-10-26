@@ -6,8 +6,7 @@ import "./Sidebar.css";
 
 const Sidebar = () => {
   const [rooms, setrooms] = useState([]);
-  const currentUser = JSON.parse(localStorage.getItem("user"));
-
+  const token = localStorage.getItem("token");
   const logOut = (e) => {
     e.preventDefault();
     localStorage.clear();
@@ -16,9 +15,9 @@ const Sidebar = () => {
 
   useEffect(() => {
     const apiReq = async () => {
-      const { data } = await axios.get("/api/rooms/", {
+      const { data } = await axios.get("/room/get-rooms", {
         headers: {
-          Authorization: `Bearer ${currentUser.token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       return data;
@@ -30,7 +29,7 @@ const Sidebar = () => {
         localStorage.setItem("rooms", JSON.stringify(info));
       })
       .catch((err) => console.log(err));
-  }, [rooms, currentUser.token]);
+  }, [rooms, token]);
 
   return (
     <div className="sidebar">
