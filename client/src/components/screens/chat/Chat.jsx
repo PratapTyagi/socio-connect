@@ -8,12 +8,13 @@ import "./Chat.css";
 
 const Chat = () => {
   const { roomId } = useParams();
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const token = localStorage.getItem("token");
+  const currentUser = JSON.parse(localStorage.getItem("user"));
   const [input, setinput] = useState("");
   const [room, setRoom] = useState({});
   const [messages, setMessages] = useState([]);
   const { pathname } = useLocation();
-  const [socket, setSocket] = useState(null);
+  // const [socket, setSocket] = useState(null);
 
   // Room info
   useEffect(() => {
@@ -33,7 +34,7 @@ const Chat = () => {
       timestamp.getMinutes() +
       (timestamp.getHours > 12 ? "PM" : "AM");
     await axios.post(
-      "/api/messages/new",
+      "/messages/new",
       {
         username: currentUser.name,
         message: input,
@@ -42,7 +43,7 @@ const Chat = () => {
       },
       {
         headers: {
-          Authorization: `Bearer ${currentUser.token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -54,36 +55,36 @@ const Chat = () => {
   useEffect(() => {
     axios
       .post(
-        "/api/messages/",
+        "/messages/sync",
         { roomId },
         {
           headers: {
-            Authorization: `Bearer ${currentUser.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       )
       .then(({ data }) => setMessages(data))
       .catch((err) => console.log(err));
-  }, [roomId, currentUser.token]);
+  }, [roomId, token]);
 
   // Socket
   useEffect(() => {
-    const sock = io();
-    setSocket(sock);
-    return () => socket.close();
+    // const sock = io();
+    // setSocket(sock);
+    // return () => socket.close();
   }, []);
 
-  useEffect(() => {
-    socket?.on("messages", (data) =>
-      setMessages((prevState) => [...prevState, data])
-    );
-  }, [socket]);
+  // useEffect(() => {
+  // socket?.on("messages", (data) =>
+  //   setMessages((prevState) => [...prevState, data])
+  // );
+  // }, [socket]);
 
   return (
     <div className="chat">
       <div className="chat_header">
         <div className="chat_headerInfo">
-          <h3>{room.name || "Room name"}</h3>
+          <h5>{room.name || "Room name"}</h5>
           <p>Last seen at</p>
         </div>
 
