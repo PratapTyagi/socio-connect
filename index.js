@@ -7,11 +7,15 @@ import messages from "./routes/message/message.js";
 import rooms from './routes/rooms/rooms.js';
 import dotenv from "dotenv";
 
+import { Server } from "socket.io";
+import { createServer } from "http";
+
 import cors from "cors";
 import path from "path";
 
 dotenv.config();
 const app = express();
+const server = createServer(app);
 
 app.use(cors());
 app.use(express.json());
@@ -28,6 +32,26 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// Socket setup
+const io = new Server(server);
+io.on("connection", function (socket) {
+  socket.on("disconnect", (reason) => {
+    console.log(reason);
+  });
+});
+
+const database = mongoose.connection;
+
+database.once("open", () => {
+  const msg = database.collection("messages");
+  const changeStream = msg.watch();
+  changeStream.on("change", (change) => {
+    if (change.operationType === "insert") {
+      io.emit("messages", change.fullDocument);
+    }
+  });
+});
+
 mongoose.connect(process.env.MONGOURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -43,4 +67,4 @@ mongoose.connection.on("error", (err) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server listening on ${PORT} port`));
+server.listen(PORT, () => console.log(`Server listening on ${PORT} port`));
