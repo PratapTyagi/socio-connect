@@ -14,7 +14,7 @@ const Chat = () => {
   const [room, setRoom] = useState({});
   const [messages, setMessages] = useState([]);
   const { pathname } = useLocation();
-  // const [socket, setSocket] = useState(null);
+  const [socket, setSocket] = useState(null);
 
   // Room info
   useEffect(() => {
@@ -69,16 +69,16 @@ const Chat = () => {
 
   // Socket
   useEffect(() => {
-    // const sock = io();
-    // setSocket(sock);
-    // return () => socket.close();
+    const sock = io();
+    setSocket(sock);
+    return () => socket.close();
   }, []);
 
-  // useEffect(() => {
-  // socket?.on("messages", (data) =>
-  //   setMessages((prevState) => [...prevState, data])
-  // );
-  // }, [socket]);
+  useEffect(() => {
+    socket?.on("messages", (data) =>
+      setMessages((prevState) => [...prevState, data])
+    );
+  }, [socket]);
 
   return (
     <div className="chat">
