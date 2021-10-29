@@ -5,7 +5,8 @@ import axios from "axios";
 import "./AllUsers.css";
 const AllUsers = () => {
   const { roomId } = useParams();
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
   const [openButton, setOpenButton] = useState(false);
   const [users, setUsers] = useState([]);
 
@@ -13,31 +14,31 @@ const AllUsers = () => {
   useEffect(() => {
     const getAllUsers = async () =>
       await axios.post(
-        "/api/users/",
+        "/all-following-users",
         { roomId },
         {
           headers: {
-            Authorization: `Bearer ${currentUser.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
     getAllUsers()
       .then(({ data }) => setUsers(data))
       .catch((err) => console.log(err));
-  }, [roomId, currentUser.token]);
+  }, [roomId, token]);
 
   // Add user in room
   const addUser = async (userId) => {
     await axios
-      .post(
-        "/api/users/add",
+      .put(
+        "/add-user",
         {
           roomId,
           userId,
         },
         {
           headers: {
-            Authorization: `Bearer ${currentUser.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       )

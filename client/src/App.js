@@ -69,6 +69,7 @@ const Routing = () => {
           </Route>
           <Route exact path="/chat/room/:roomId/allusers">
             <div className="margin app__body">
+              <Sidebar />
               <AllUsers />
             </div>
           </Route>
