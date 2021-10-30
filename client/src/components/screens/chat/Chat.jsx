@@ -71,7 +71,7 @@ const Chat = () => {
   useEffect(() => {
     const sock = io();
     setSocket(sock);
-    return () => socket.close();
+    return () => sock.close();
   }, []);
 
   useEffect(() => {
@@ -101,8 +101,9 @@ const Chat = () => {
         {messages.map((m) => (
           <p
             key={m._id}
-            className={`chat_message ${m.received === currentUser._id && "chat_receiver"
-              }`}
+            className={`chat_message ${
+              m.received === currentUser._id && "chat_receiver"
+            }`}
           >
             {m.received !== currentUser._id && (
               <span className="chat_name">{m.username}</span>
