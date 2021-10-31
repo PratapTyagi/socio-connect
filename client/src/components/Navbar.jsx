@@ -52,13 +52,13 @@ const Navbar = () => {
             <h6>Create</h6>
           </Link>
           <Link
-            className="link"
+            className="link logout"
             onClick={() => {
               localStorage.clear();
               dispatch({ type: "CLEAR" });
             }}
             to="/login"
-            style={{ textDecoration: "none", backgroundColor: "red" }}
+            style={{ textDecoration: "none" }}
           >
             <h6>Logout</h6>
           </Link>

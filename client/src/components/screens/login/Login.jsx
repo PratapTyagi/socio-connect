@@ -81,6 +81,13 @@ const Login = () => {
           </Link>
         </p>
       </div>
+      <div className="info">
+        <h6>Demo credentials</h6>
+        <h6>Email:</h6>
+        <p>tyagipratap111@gmail.com</p>
+        <h6>Password:</h6>
+        <p>Qwert@111</p>
+      </div>
     </div>
   );
 };

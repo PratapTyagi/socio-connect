@@ -27,9 +27,22 @@
 }
 
 .right > .link > h6:hover {
-  background-color: var(--theame-color);
-  color: rgb(44, 43, 44);
-  transition: background-color 0.9s ease-out;
+  color: var(--theame-color);
+  transition: color 0.3s ease-out;
+}
+
+.right > .logout > h6 {
+  color: red !important;
+  font-weight: 500;
+}
+
+.right > .logout > h6:hover {
+  color: whitesmoke !important;
+  transition: color 0.3s ease-out;
+}
+
+.right > .logout:hover {
+  background-color: red;
 }
 
 .modal-content {

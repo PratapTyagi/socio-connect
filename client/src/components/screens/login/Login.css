@@ -10,6 +10,13 @@
   text-align: left;
 }
 
+.login_page > .info {
+  width: 35%;
+  margin: 0 auto !important;
+  color: rgb(44, 43, 44);
+  text-align: center;
+}
+
 .login > h4 {
   padding: 20px 0 0 28px;
 }
