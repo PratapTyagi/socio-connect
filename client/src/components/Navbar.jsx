@@ -10,6 +10,7 @@ const Navbar = () => {
   const [search, setSearch] = useState("");
   const [userDetails, setUserDetails] = useState([]);
   const searchModal = useRef(null);
+  const [hover, sethover] = useState(false);
 
   useEffect(() => {
     M.Modal.init(searchModal.current);
@@ -32,24 +33,24 @@ const Navbar = () => {
           </Link>
           <Link
             className="link"
-            to="/myfollowingsposts"
-            style={{ textDecoration: "none" }}
-          >
-            <h6>Following posts</h6>
-          </Link>
-          <Link
-            className="link"
             to="/profile"
             style={{ textDecoration: "none" }}
           >
-            <h6>Profile</h6>
+            <h6 className="material-icons">person</h6>
           </Link>
           <Link
             className="link"
             to="/create"
             style={{ textDecoration: "none" }}
           >
-            <h6>Create</h6>
+            <h6 className="material-icons">add</h6>
+          </Link>
+          <Link
+            className="link following_posts"
+            to="/myfollowingsposts"
+            style={{ textDecoration: "none" }}
+          >
+            <h6>Following posts</h6>
           </Link>
           <Link
             className="link logout"
@@ -59,8 +60,10 @@ const Navbar = () => {
             }}
             to="/login"
             style={{ textDecoration: "none" }}
+            onMouseEnter={() => sethover(true)}
+            onMouseLeave={() => sethover(false)}
           >
-            <h6>Logout</h6>
+            {logoutSvgs()}
           </Link>
         </div>
       );
@@ -98,6 +101,40 @@ const Navbar = () => {
       .catch((err) => console.log(err));
   };
 
+  const logoutSvgs = () => {
+    if (hover) {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+        >
+          <path fill="none" d="M0 0h24v24H0z" />
+          <path
+            d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm5-6l5-4-5-4v3H9v2h8v3z"
+            fill="rgb(255, 51, 51)"
+          />
+        </svg>
+      );
+    } else {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+        >
+          <path fill="none" d="M0 0h24v24H0z" />
+          <path
+            d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm5-6l5-4-5-4v3H9v2h8v3z"
+            fill="rgb(85, 84, 84)"
+          />
+        </svg>
+      );
+    }
+  };
+
   return (
     <div className="navbar">
       <div className="logo">
@@ -106,9 +143,7 @@ const Navbar = () => {
           to={state ? "/" : "/login"}
           style={{ textDecoration: "none" }}
         >
-          <h4>
-            <i>S</i>σ𝓬ισ𝓬σηηє𝓬т
-          </h4>
+          <h4>SocioConnect</h4>
         </Link>
       </div>
       {renderList()}

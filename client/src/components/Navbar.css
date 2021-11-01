@@ -3,8 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  margin-bottom: 20px;
-  background-color: rgb(44, 43, 44);
+  margin: 20px 20px;
 }
 
 .logo > .link > h4 {
@@ -20,15 +19,27 @@
 
 .right > .link > h6 {
   cursor: pointer;
-  padding: 30px 10px;
+  padding: 10px 10px;
   margin: 0;
-  font-size: 15px;
-  color: whitesmoke;
+  font-size: 16px;
+  font-weight: 560;
+  color: rgb(85, 84, 84);
 }
 
 .right > .link > h6:hover {
+  background-color: var(--theame-color);
+  border-radius: 50% !important;
+  color: whitesmoke;
+  transition: background-color 0.4s ease-out;
+}
+
+.right > .following_posts > h6:hover {
+  background-color: white !important;
   color: var(--theame-color);
-  transition: color 0.3s ease-out;
+}
+
+.right > .link > img {
+  margin-top: 5px !important;
 }
 
 .right > .logout > h6 {
@@ -39,10 +50,6 @@
 .right > .logout > h6:hover {
   color: whitesmoke !important;
   transition: color 0.3s ease-out;
-}
-
-.right > .logout:hover {
-  background-color: red;
 }
 
 .modal-content {
