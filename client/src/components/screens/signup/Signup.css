@@ -4,13 +4,16 @@
 
 .register {
   border-radius: 20px;
-  background-color: rgb(44, 43, 44);
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 5px rgb(156, 156, 156, 0.2),
+    -1px -1px 5px rgb(156, 156, 156, 0.2);
   margin: auto;
   width: 35%;
   text-align: left;
 }
 
 .register > h4 {
+  color: rgb(85, 84, 84);
   padding: 20px 0 0 28px;
 }
 
@@ -61,7 +64,7 @@
 .login__user__login {
   padding: 10px;
   text-decoration: none;
-  color: whitesmoke;
+  color: var(--theame-color);
 }
 
 .login__user__login:hover {
