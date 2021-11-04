@@ -46,7 +46,7 @@ const Navbar = () => {
             <h6 className="material-icons">add</h6>
           </Link>
           <Link
-            className="link following_posts"
+            className="link text"
             to="/myfollowingsposts"
             style={{ textDecoration: "none" }}
           >
@@ -70,11 +70,15 @@ const Navbar = () => {
     } else {
       return (
         <div className="right">
-          <Link className="link" to="/login" style={{ textDecoration: "none" }}>
+          <Link
+            className="link text"
+            to="/login"
+            style={{ textDecoration: "none" }}
+          >
             <h6>Sign In</h6>
           </Link>
           <Link
-            className="link"
+            className="link text"
             to="/signup"
             style={{ textDecoration: "none" }}
           >

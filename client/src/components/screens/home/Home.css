@@ -21,6 +21,7 @@
 .card_header > .link > h5 {
   padding: 15px;
   font-weight: 400;
+  color: rgb(85, 84, 84);
 }
 
 .card_header > .delete {
@@ -95,7 +96,7 @@
 }
 
 .right__top > h5 {
-  color: rgb(27, 27, 27);
+  color: rgb(85, 84, 84);
   margin-top: 0;
   padding: 15px;
   padding-left: 20px;
@@ -168,7 +169,7 @@
 }
 
 .right__bottom > h5 {
-  color: rgb(27, 27, 27);
+  color: rgb(85, 84, 84);
   margin-top: 0;
   padding: 15px;
   padding-left: 20px;

@@ -33,7 +33,7 @@
   transition: background-color 0.4s ease-out;
 }
 
-.right > .following_posts > h6:hover {
+.right > .text > h6:hover {
   background-color: white !important;
   color: var(--theame-color);
 }
