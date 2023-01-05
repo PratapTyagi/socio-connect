@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import SidebarChat from "./SidebarChat";
 import axios from "axios";
 import "./Sidebar.css";
+import { UserContext } from "../../../App";
 
 const Sidebar = () => {
   const [rooms, setrooms] = useState([]);
   const token = localStorage.getItem("token");
+  const { state } = useContext(UserContext);
+
   const logOut = (e) => {
     e.preventDefault();
     localStorage.clear();
@@ -29,7 +32,7 @@ const Sidebar = () => {
         localStorage.setItem("rooms", JSON.stringify(info));
       })
       .catch((err) => console.log(err));
-  }, [rooms, token]);
+  }, [state, token]);
 
   return (
     <div className="sidebar">

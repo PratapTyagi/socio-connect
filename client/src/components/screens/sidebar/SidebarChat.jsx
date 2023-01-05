@@ -2,28 +2,28 @@ import axios from "axios";
 
 import "./SidebarChat.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../../App";
 
 const SidebarChat = ({ addNewChat, room }) => {
-  const currentUser = localStorage.getItem("user");
+  const { dispatch } = useContext(UserContext);
   const token = localStorage.getItem("token");
 
   const createChat = async () => {
     const fetchedName = prompt("Enter the name of room");
     if (fetchedName) {
-      const res = await axios
-        .post(
-          "/room/new",
-          {
-            name: fetchedName,
+      const { data: user } = await axios.post(
+        "/room/new",
+        {
+          name: fetchedName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .catch((err) => console.log(err));
-      console.log(res);
+        }
+      );
+      dispatch({ type: "USER", payload: user });
     }
   };
 

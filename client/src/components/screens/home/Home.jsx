@@ -22,7 +22,7 @@ const Home = () => {
         setInfo(data.posts);
       })
       .catch((err) => console.log(err));
-  }, [info]);
+  }, []);
 
   useEffect(() => {
     axios
@@ -35,7 +35,7 @@ const Home = () => {
         setFollow(data);
       })
       .catch((error) => console.log(error));
-  }, [follow]);
+  }, [state]);
 
   useEffect(() => {
     axios
@@ -48,7 +48,7 @@ const Home = () => {
         setFollowings(data);
       })
       .catch((error) => console.log(error));
-  }, [followings]);
+  }, [state]);
 
   const likePost = (id) => {
     axios
