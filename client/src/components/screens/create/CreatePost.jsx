@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../../axios";
 import M from "materialize-css";
 
 import "./CreatePost.css";

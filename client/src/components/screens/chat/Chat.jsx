@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 
-import axios from "axios";
+import axios from "../../../axios";
 import io from "socket.io-client";
 
 import "./Chat.css";

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 
 import SidebarChat from "./SidebarChat";
-import axios from "axios";
+import axios from "../../../axios";
 import "./Sidebar.css";
 import { UserContext } from "../../../App";
 

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../../axios";
 import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import M from "materialize-css";

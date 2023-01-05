@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../../axios";
 
 import "./SidebarChat.css";
 import { Link } from "react-router-dom";

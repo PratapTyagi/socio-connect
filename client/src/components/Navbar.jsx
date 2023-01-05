@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
 import M from "materialize-css";
-import axios from "axios";
+import axios from "../axios";
 
 import "./Navbar.css";
 const Navbar = () => {

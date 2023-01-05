@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../../axios";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../../App";
 
