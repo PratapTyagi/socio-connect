@@ -1,7 +1,7 @@
 # Socio Connect
 
 ## `Link`
-[SocioConnect](https://socio-connect-1.herokuapp.com/)
+[SocioConnect](https://socio-connect.onrender.com/)
 
 ## `Description`
 - Inspired from the Facebook social media platform
